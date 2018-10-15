@@ -9,10 +9,6 @@ _main();
 function _main()
 {
 	$arr = array();
-	$data1 = getData(1);
-	$data2 = getData(2);
-	$data3 = getData(3);
-	$data = array_merge($data1,$data2,$data3);
 	foreach($data as $k=>$v){
 		$tmp = array();
 		$tmp['name'] = $v['name'];
@@ -27,7 +23,7 @@ function _main()
 		$tmp['is_recommand'] = $v['is_recommand'];
 		$arr[] = $tmp;
 	}
-	/**
+	/**此处思将数据写入到文件中
 	foreach($arr as $v){
 		writeFile($v);
 	}**/
@@ -56,9 +52,9 @@ function writeExcel($data)
 }
 
 //调用接口，获取cm 3d主题数据
-function getData($p=1)
+function getData()
 {
-	$ch = curl_init('http://cml.ksmobile.com/Album/getThemeList?p=' . $p . '&album_id=67&p_n=150&pos=110&appv=5.48.2');
+	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_POST, false);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	$data = curl_exec($ch);
